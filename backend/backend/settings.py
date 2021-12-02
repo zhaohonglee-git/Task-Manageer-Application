@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todo',
     'rest_framework',
-    'corsheaders',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,8 +50,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -104,10 +104,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# whitelisting React port
-CORS_ORIGIN_WHITELIST = ('http://localhost:3000')
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
+# CORS_ALLOWED_ORIGIN_REGEXES = [
+#     r"^https://\w+\.example\.com$",
+# ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
